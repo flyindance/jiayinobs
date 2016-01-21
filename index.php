@@ -158,6 +158,10 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     assign_dynamic('index');
 }
 
+//中部新闻
+$center_articles = index_get_center_articles();
+$smarty->assign('center_articles',$center_articles);
+
 $smarty->display('index.dwt', $cache_id);
 
 /*------------------------------------------------------ */
@@ -204,7 +208,7 @@ function index_get_invoice_query()
  */
 function index_get_new_articles()
 {
-    $sql = 'SELECT a.article_id, a.title, ac.cat_name, a.add_time, a.file_url, a.open_type, ac.cat_id, ac.cat_name ' .
+    $sql = 'SELECT a.article_id, a.title, ac.cat_name, a.add_time, a.file_url, a.open_type, ac.cat_id, ac.cat_name, a.content ' .
             ' FROM ' . $GLOBALS['ecs']->table('article') . ' AS a, ' .
                 $GLOBALS['ecs']->table('article_cat') . ' AS ac' .
             ' WHERE a.is_open = 1 AND a.cat_id = ac.cat_id AND ac.cat_type = 1' .
@@ -223,8 +227,8 @@ function index_get_new_articles()
         $arr[$idx]['url']         = $row['open_type'] != 1 ?
                                         build_uri('article', array('aid' => $row['article_id']), $row['title']) : trim($row['file_url']);
         $arr[$idx]['cat_url']     = build_uri('article_cat', array('acid' => $row['cat_id']), $row['cat_name']);
+        $arr[$idx]['content']     = strip_tags($row['content']);
     }
-
     return $arr;
 }
 
@@ -355,6 +359,33 @@ function index_get_links()
     }
 
     return $links;
+}
+
+//中部新闻
+function index_get_center_articles()
+{
+    $sql = 'SELECT a.article_id, a.title, ac.cat_name, a.add_time, a.file_url, a.open_type, ac.cat_id, ac.cat_name, a.content ' .
+        ' FROM ' . $GLOBALS['ecs']->table('article') . ' AS a, ' .
+        $GLOBALS['ecs']->table('article_cat') . ' AS ac' .
+        ' WHERE a.is_open = 1 AND a.cat_id = ac.cat_id AND ac.cat_type = 6' .
+        ' ORDER BY a.article_type DESC, a.add_time DESC LIMIT ' . $GLOBALS['_CFG']['article_number'];
+    $res = $GLOBALS['db']->getAll($sql);
+
+    $arr = array();
+    foreach ($res AS $idx => $row)
+    {
+        $arr[$idx]['id']          = $row['article_id'];
+        $arr[$idx]['title']       = $row['title'];
+        $arr[$idx]['short_title'] = $GLOBALS['_CFG']['article_title_length'] > 0 ?
+            sub_str($row['title'], $GLOBALS['_CFG']['article_title_length']) : $row['title'];
+        $arr[$idx]['cat_name']    = $row['cat_name'];
+        $arr[$idx]['add_time']    = local_date($GLOBALS['_CFG']['date_format'], $row['add_time']);
+        $arr[$idx]['url']         = $row['open_type'] != 1 ?
+            build_uri('article', array('aid' => $row['article_id']), $row['title']) : trim($row['file_url']);
+        $arr[$idx]['cat_url']     = build_uri('article_cat', array('acid' => $row['cat_id']), $row['cat_name']);
+        $arr[$idx]['content']     = strip_tags($row['content']);
+    }
+    return $arr;
 }
 
 ?>

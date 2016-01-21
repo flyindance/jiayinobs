@@ -27,10 +27,9 @@ $affiliate = unserialize($GLOBALS['_CFG']['affiliate']);
 $smarty->assign('affiliate', $affiliate);
 $back_act='';
 
-
 // 不需要登录的操作或自己验证是否登录（如ajax处理）的act
 $not_login_arr =
-array('login','act_login','register','act_register','act_edit_password','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','clear_history','qpassword_name', 'get_passwd_question', 'check_answer');
+array('login','act_login','register','act_register','act_edit_password','get_password','send_pwd_email','password', 'signin', 'add_tag', 'collect', 'return_to_cart', 'logout', 'email_list', 'validate_email', 'send_hash_mail', 'order_query', 'is_registered', 'check_email','clear_history','qpassword_name', 'get_passwd_question', 'check_answer','send_salt');
 
 /* 显示页面的action列表 */
 $ui_arr = array('register', 'login', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
@@ -136,7 +135,30 @@ if ($action == 'register')
 //    $smarty->assign('back_act', $back_act);
     $smarty->display('user_passport.dwt');
 }
-
+//发送手机验证码
+elseif ($action == 'send_salt') {
+    $phone =  htmlspecialchars(addslashes_deep($_REQUEST['username']));
+    $json_return = array(
+        'status'        => 0,
+        'msg'           => '',
+    );
+    if (!$sms->is_moblie($phone)) {
+        $json_return['msg'] = '不是有效的手机号码';
+        echo json_encode($json_return);exit;
+    }
+    $sql = "SELECT count(*) `count` FROM ecs_users where user_name = '".$phone."'";
+    $result = $db->getOne($sql);
+    if ($result && $result > 0) {
+        $json_return['msg'] = '账号已存在';
+        echo json_encode($json_return);exit;
+    }
+    $_SESSION['salt'] = $sms->salt(6);
+    $sms->send($phone,'您的验证码为：'.$_SESSION['salt']);
+//    $sms->log($phone,"注册验证码");
+    $json_return['status'] = 1;
+    $json_return['msg'] = '手机验证码已发送，请查收';
+    echo json_encode($json_return);exit;
+}
 /* 注册会员的处理 */
 elseif ($action == 'act_register')
 {
@@ -150,9 +172,9 @@ elseif ($action == 'act_register')
     else
     {
         include_once(ROOT_PATH . 'includes/lib_passport.php');
-
         $username = isset($_POST['username']) ? trim($_POST['username']) : '';
         $password = isset($_POST['password']) ? trim($_POST['password']) : '';
+        $confirm_password = isset($_POST['confirm_password']) ? trim($_POST['confirm_password']) : '';
         $email    = isset($_POST['email']) ? trim($_POST['email']) : '';
         $other['msn'] = isset($_POST['extend_field1']) ? $_POST['extend_field1'] : '';
         $other['qq'] = isset($_POST['extend_field2']) ? $_POST['extend_field2'] : '';
@@ -173,7 +195,16 @@ elseif ($action == 'act_register')
         {
             show_message($_LANG['passport_js']['username_shorter']);
         }
-
+        $salt = isset($_POST['salt']) ? trim($_POST['salt']) : '';
+        if (!$sms->is_moblie($username)) {
+            show_message("不是有效的手机号码！");
+        }
+        if ($salt != $_SESSION['salt'] || empty($salt)) {
+            show_message("验证码错误！");
+        }
+        if (strlen($password) < 6 || strlen($password) > 16) {
+            show_message("密码由6-12位数字或字母组成");
+        }
         if (strlen($password) < 6)
         {
             show_message($_LANG['passport_js']['password_shorter']);
@@ -182,6 +213,10 @@ elseif ($action == 'act_register')
         if (strpos($password, ' ') > 0)
         {
             show_message($_LANG['passwd_balnk']);
+        }
+
+        if ($password != $confirm_password) {
+            show_message('两次密码不一致');
         }
 
         /* 验证码检查 */
@@ -204,6 +239,7 @@ elseif ($action == 'act_register')
 
         if (register($username, $password, $email, $other) !== false)
         {
+            unset($_SESSION['salt']);
             /*把新注册用户的扩展信息插入数据库*/
             $sql = 'SELECT id FROM ' . $ecs->table('reg_fields') . ' WHERE type = 0 AND display = 1 ORDER BY dis_order, id';   //读出所有自定义扩展字段的id
             $fields_arr = $db->getAll($sql);
