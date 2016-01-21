@@ -49,19 +49,6 @@ function register($username, $password, $email, $other = array())
         }
     }
 
-    /* 检查email */
-    if (empty($email))
-    {
-        $GLOBALS['err']->add($GLOBALS['_LANG']['email_empty']);
-    }
-    else
-    {
-        if (!is_email($email))
-        {
-            $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['email_invalid'], htmlspecialchars($email)));
-        }
-    }
-
     if ($GLOBALS['err']->error_no > 0)
     {
         return false;

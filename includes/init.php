@@ -303,5 +303,6 @@ else
 {
     ob_start();
 }
-
+require(ROOT_PATH . 'includes/sys_sms.php');
+$sms = new sms();
 ?>
