@@ -54,60 +54,6 @@
 </div>
 </form>
 
-<div class="usBox clearfix">
-  <div class="usBox_1 f_l">
-   <div class="logtitle"></div>
-   <form name="formLogin" action="user.php" method="post" onSubmit="return userLogin()">
-        <table width="100%" border="0" align="left" cellpadding="3" cellspacing="5">
-          <tr>
-            <td width="15%" align="right">{$lang.label_username}</td>
-            <td width="85%"><input name="username" type="text" size="25" class="inputBg" /></td>
-          </tr>
-          <tr>
-            <td align="right">{$lang.label_password}</td>
-            <td>
-            <input name="password" type="password" size="15"  class="inputBg"/>
-            </td>
-          </tr>
-          <!-- 判断是否启用验证码{if $enabled_captcha} -->
-          <tr>
-            <td align="right">{$lang.comment_captcha}</td>
-            <td><input type="text" size="8" name="captcha" class="inputBg" />
-            <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" /> </td>
-          </tr>
-          <!--{/if}-->
-          <tr>
-            <td colspan="2"><input type="checkbox" value="1" name="remember" /><label for="remember">{$lang.remember}</label></td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td align="left">
-            <input type="hidden" name="act" value="act_login" />
-            <input type="hidden" name="back_act" value="{$back_act}" />
-            <input type="submit" name="submit" value="" class="us_Submit" />
-            </td>
-          </tr>
-	  <tr><td></td><td><a href="user.php?act=qpassword_name" class="f3">{$lang.get_password_by_question}</a>&nbsp;&nbsp;&nbsp;<a href="user.php?act=get_password" class="f3">{$lang.get_password_by_mail}</a></td></tr>
-      </table>
-    </form>
-  </div>
-  <div class="usTxt">
-    <strong>{$lang.user_reg_info[0]}</strong>  <br />
-    <strong class="f4">{$lang.user_reg_info[1]}：</strong><br />
-    <!-- {if $car_off eq 1} -->
-    {$lang.user_reg_info[2]}<br />
-    <!--{/if}-->
-    <!-- {if $car_off eq 0} -->
-    {$lang.user_reg_info[8]}<br />
-    <!--{/if}-->
-    {$lang.user_reg_info[3]}：<br />
-    1. {$lang.user_reg_info[4]}<br />
-    2. {$lang.user_reg_info[5]}<br />
-    3. {$lang.user_reg_info[6]}<br />
-    4. {$lang.user_reg_info[7]}  <br />
-    <a href="user.php?act=register"><img src="images/bnt_ur_reg.gif" /></a>
-  </div>
-</div>
 <!--{/if}-->
 <!--#登录界面 end-->
 
