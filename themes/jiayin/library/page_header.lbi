@@ -1,0 +1,38 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+<div class="topall">
+  <div class="topnew clearfix">
+    <div class="top-left"><a href="#"><img src="images/all_03.png" /></a></div>
+    <div class="top-right">
+      <div class="right-top"><a href="#" class="zhuce">注册</a><a href="#" class="tell">4006-520-580</a></div>
+      <div class="right-bottom clearfix">
+        <div class="left-nav">
+          <ul>
+            <li class="acitve"><a href="#">首 页 </a></li>
+            <li><a href="#">商 城</a></li>
+            <li><a href="#">服 务</a></li>
+            <li><a href="#">我 们</a></li>
+          </ul>
+        </div>
+        <div class="right-denglu">
+          <div class="entdint">登 录
+            <div class="botne">
+              <div class="tienan">
+                <ul>
+                  <div class="tengr">你的购物袋是空的</div>
+                  <li><a href="#"><img src="images/xu_03.png" />购物袋</a></li>
+                  <li><a href="#"><img src="images/xu_07.png" />收藏</a></li>
+                  <li><a href="#"><img src="images/xu_09.png" />订单</a></li>
+                  <li><a href="#"><img src="images/xu_11.png" />账户</a></li>
+                  <li><a href="#"><img src="images/xu_13.png" />登录</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
