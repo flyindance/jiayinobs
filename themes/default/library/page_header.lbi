@@ -11,10 +11,10 @@ var process_request = "{$lang.process_request}";
             <div class="right-bottom clearfix">
                 <div class="left-nav">
                     <ul>
-                        <li class="acitve"><a href="#">首 页 </a></li>
-                        <li><a href="#">商 城</a></li>
-                        <li><a href="#">服 务</a></li>
-                        <li><a href="#">我 们</a></li>
+                        <li class="acitve"><a href="index.php">首 页 </a></li>
+                        <li><a href="#">佳音产品</a></li>
+                        <li><a href="service.php">佳音服务</a></li>
+                        <li><a href="our.php">我 们</a></li>
                     </ul>
                 </div>
                 <div class="right-denglu">
@@ -38,8 +38,7 @@ var process_request = "{$lang.process_request}";
     </div>
 </div>
 <!--end-->
-
-<!-- {if $action neq 'login'} -->
+<!-- {if $action neq 'login' and $auto_redirect neq 1} -->
 <div class="new-banner">
     <div class="baenr-dingw">
         <a href="#" style="display:block"><img src="images/baner_02.png"/></a>
