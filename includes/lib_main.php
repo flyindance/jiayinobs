@@ -153,7 +153,7 @@ function assign_ur_here($cat = 0, $str = '')
     }
 
     /* 初始化“页面标题”和“当前位置” */
-    $page_title = $GLOBALS['_CFG']['shop_title'] . ' - ' . 'Powered by ECShop';
+    $page_title = $GLOBALS['_CFG']['shop_title'] . ' - ' . '佳音在线';
     $ur_here    = '<a href=".">' . $GLOBALS['_LANG']['home'] . '</a>';
 
     /* 根据文件名分别处理中间的部分 */
@@ -519,6 +519,9 @@ function assign_pager($app, $cat, $record_count, $size, $sort, $order, $page = 1
             break;
         case 'exchange':
             $uri_args = array('cid' => $cat, 'integral_min'=>$price_min, 'integral_max'=>$price_max, 'sort' => $sort, 'order' => $order, 'display' => $display_type);
+            break;
+        case 'news_list' :
+            $uri_args = array('acid' => $cat, 'sort' => $sort, 'order' => $order);
             break;
     }
     /* 分页样式 */

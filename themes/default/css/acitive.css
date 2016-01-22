@@ -6,7 +6,7 @@
 .inputot h3{ margin-top:16px !important;}
 
 
-.preota{ width:1000px; height:39px; border-bottom:2px solid #fb9500; font-size:26px; color:#404040; background:url(../images/ico_03.png) no-repeat 128px center; text-indent:12px;margin-bottom:20px; margin-top:20px;}
+.preota{ width:1000px; height:39px; border-bottom:2px solid #fb9500; font-size:26px; color:#404040; text-indent:12px;margin-bottom:20px; margin-top:20px;}
 .preotb{  width:1100px }
 .preotb ul li{ width:483px; height:340px; border:1px solid #d9d9d9; padding:10px; float:left; margin-right:12px; margin-bottom:20px;}
 .preotb ul li.preotb{ width:484px; height:250px;}

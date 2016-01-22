@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Keywords" content="{$keywords}" />
+    <meta name="Description" content="{$description}" />
+    <meta name="Description" content="{$description}" />
+    <!-- TemplateBeginEditable name="doctitle" -->
+    <title>{$page_title}</title>
+    <!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" href="animated_favicon.gif" type="image/gif" />
+    <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+    {* 包含脚本文件 *}
+    {insert_scripts files='common.js'}
+    <style type="text/css">
+        p a{color:#006acd; text-decoration:underline;}
+    </style>
+    <link rel="stylesheet" type="text/css" href="themes/default/css/club.css"/>
+    <link rel="stylesheet" type="text/css" href="themes/default/css/acitive.css"/>
+    <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./js/club.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="centerall clearfix" style=" margin-bottom:30px;">
+    <div class="centerall" >
+        <div class="new-order">
+            <div class="yuns">{$parent.cat_name}</div>
+            <div class="left-order tengdz">
+                <ul>
+                    <!-- {foreach from=$children item=service} -->
+                        <li {if $service.cat_id eq $content.cat_id}class="teng"{/if}><a href="service_list.php?cat_id={$parent.cat_id}&id={$service.cat_id}">{$service.cat_name}</a></li>
+                    <!-- {/foreach} -->
+                </ul>
+            </div>
+            <div class="orright">
+                <div class="yunxitong">
+                    <dl>
+                        <dt>{$content.cat_name}</dt>
+                        <dd></dd>
+                    </dl>
+                </div>
+
+                <div class="tengxint"> <p>{$content.cat_desc}</p></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

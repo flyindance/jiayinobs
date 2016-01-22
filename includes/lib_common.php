@@ -1795,6 +1795,13 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
             }
 
             break;
+        case 'news_list' :
+            if (empty($acid)) {
+                return false;
+            } else {
+                $uri = 'news_list.php?id=' . $acid . '&page='.$page;
+            }
+            break;
         default:
             return false;
             break;

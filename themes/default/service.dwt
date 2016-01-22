@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Keywords" content="{$keywords}" />
+    <meta name="Description" content="{$description}" />
+    <meta name="Description" content="{$description}" />
+    <!-- TemplateBeginEditable name="doctitle" -->
+    <title>{$page_title}</title>
+    <!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" href="animated_favicon.gif" type="image/gif" />
+    <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+    {* 包含脚本文件 *}
+    {insert_scripts files='common.js'}
+    <style type="text/css">
+        p a{color:#006acd; text-decoration:underline;}
+    </style>
+    <link rel="stylesheet" type="text/css" href="themes/default/css/club.css"/>
+    <link rel="stylesheet" type="text/css" href="themes/default/css/acitive.css"/>
+    <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./js/club.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<!-- {foreach from=$service_list item=service} -->
+    <div class="centerall clearfix">
+        <div class="preota">{$service.cat_name}<img src="../images/ico_03.png" style="margin-left: 10px;"/></div>
+        <div class="fuwu">
+            <div class="leftwu"><img src="images/ten_03.png" /></div>
+            <div class="rightwu">
+                <h3>{$service.keywords}</h3>
+                <p>{$service.cat_desc}</p>
+                <a href="service_list.php?cat_id={$service.cat_id}"  class="tn-p">了解详情</a>
+            </div>
+        </div>
+    </div>
+<!-- {/foreach} -->
+
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

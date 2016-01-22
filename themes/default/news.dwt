@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Keywords" content="{$keywords}" />
+    <meta name="Description" content="{$description}" />
+    <meta name="Description" content="{$description}" />
+    <!-- TemplateBeginEditable name="doctitle" -->
+    <title>{$page_title}</title>
+    <!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" href="animated_favicon.gif" type="image/gif" />
+    <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+    {* 包含脚本文件 *}
+    {insert_scripts files='common.js'}
+    <style type="text/css">
+        p a{color:#006acd; text-decoration:underline;}
+        .active {
+            color:#fff; background:url(images/biao_03.png) no-repeat; text-align:center
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="themes/default/css/club.css"/>
+    <link rel="stylesheet" type="text/css" href="themes/default/css/acitive.css"/>
+    <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./js/club.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="centerall clearfix" style=" margin-bottom:30px;">
+    <div class="xq">您当前的位置：<a href="#">首页</a> > <a href="#">新闻列表</a> > 企业新闻 </div>
+    <div class="centerall" >
+        <div class="leftxq">
+            <h3>{$article.title}</h3>
+            <h4>来源： {$article.author} {$article.add_time}</h4>
+            <p>{$article.content}</p>
+        </div>
+        <!--{foreach from=$goods_list item=goods}-->
+        <div class="rightxq">
+            <div class="rgintxq"><a href="goods.php?id={$goods.goods_id}"><img src="{$goods.goods_img}" width="289" height="148"/></a></div>
+            <div class="rgiht-p"><a href="goods.php?id={$goods.goods_id}">{$goods.goods_name}</a></div>
+        </div>
+        <!--{/foreach}-->
+    </div>
+</div>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>
