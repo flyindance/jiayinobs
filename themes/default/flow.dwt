@@ -10,6 +10,10 @@
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="icon" href="animated_favicon.gif" type="image/gif" />
 <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{$ecs_tpl_path}/css/club.css" />
+<link rel="stylesheet" type="text/css" href="{$ecs_tpl_path}/css/acitive.css"/>
+<script type="text/javascript" src="{$ecs_tpl_path}/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="{$ecs_tpl_path}/js/club.js"></script>
 {* 包含脚本文件 *}
 {insert_scripts files='common.js,shopping_flow.js'}
 </head>
