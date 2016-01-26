@@ -5,7 +5,7 @@ var process_request = "{$lang.process_request}";
 <!--start-->
 <div class="topall">
     <div class="topnew clearfix">
-        <div class="top-left"><a href="#"><img src="images/all_03.png"/></a></div>
+        <div class="top-left"><a href="index.php"><img src="images/all_03.png"/></a></div>
         <div class="top-right">
             <div class="right-top">{if $smarty.session.user_id <= 0}<a href="user.php?act=register" class="zhuce">注册</a>{/if}<a href="#" class="tell">4006-520-580</a></div>
             <div class="right-bottom clearfix">

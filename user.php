@@ -153,7 +153,7 @@ elseif ($action == 'send_salt') {
         echo json_encode($json_return);exit;
     }
     $_SESSION['salt'] = $sms->salt(6);
-    $sms->send($phone,'您的验证码为：'.$_SESSION['salt']);
+    $sms->send($phone,'您的验证码是：'.$_SESSION['salt']);
 //    $sms->log($phone,"注册验证码");
     $json_return['status'] = 1;
     $json_return['msg'] = '手机验证码已发送，请查收';

@@ -10,8 +10,8 @@ class sms {
     private $api_urls   = 'http://222.76.210.200:9999/sms.aspx';
 
     private $config = array(
-        'userid'    => 490,
-        'account'   => 'tzl',
+        'userid'    => 513,
+        'account'   => '592jyzx',
         'password'  => '123456',
         'mobile'    => '',
         'content'   => '',
