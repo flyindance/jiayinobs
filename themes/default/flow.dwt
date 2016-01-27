@@ -9,7 +9,6 @@
 <!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="icon" href="animated_favicon.gif" type="image/gif" />
-<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="{$ecs_tpl_path}/css/club.css" />
 <link rel="stylesheet" type="text/css" href="{$ecs_tpl_path}/css/acitive.css"/>
 <script type="text/javascript" src="{$ecs_tpl_path}/js/jquery-1.11.1.min.js"></script>
@@ -169,6 +168,56 @@
         }
       </script>
   </div>
+    <div class="centerall clearfix">
+        <div class="preota">购物车</div>
+        <ul class="xint">
+            <li class="xuanzh">全部商品 4</li>
+        </ul>
+        <div class="clear"></div>
+        <table id="cartTable" cellspacing="0">
+            <thead>
+            <tr>
+                <th width="100" style="padding:0 10px"><input type="checkbox" class="check-all check">
+                    &nbsp;全选</th>
+                <th width="381">商品</th>
+                <th width="136">单价</th>
+                <th width="114" align="center" style="padding-left:40px;">数量</th>
+                <th width="125">金额</th>
+                <th width="130">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- {foreach from=$goods_list item=goods} -->
+            <tr>
+                <td class="checkbox"><input type="checkbox" class="check"></td>
+                <td class="goods"><a href="goods.php?id={$goods.goods_id}" target="_blank"><img src="{$goods.goods_thumb}" border="0" title="{$goods.goods_name|escape:html}" /></a><span>{$goods.goods_name}</span></td>
+                <td class="price">{$goods.goods_price}</td>
+                <td align="center" class="count"><span class="reduce"></span>
+                    <input type="text" class="count-input" value="1">
+                    <span class="add">+</span></td>
+                <td class="subtotal">{$goods.subtotal}</td>
+                <td class="operation"><span class="delete"><a href="javascript:if (confirm('{$lang.drop_goods_confirm}')) location.href='flow.php?step=drop_goods&amp;id={$goods.rec_id}'; ">删除</a></span></td>
+            </tr>
+            <!-- {/foreach} -->
+            </tbody>
+        </table>
+        <div class="foot" id="foot">
+            <label for="" class="fl select-all">
+                <input type="checkbox" class="check-all check">
+                &nbsp;全选</label>
+            <a href="javascript:viod(0)" class="fl delete" id="deleteAll">删除</a>
+            <div class="fr closing"><a href="flow.php?step=checkout">结 算</a></div>
+            <div class="fr total">合计:￥<span id="priceTotal">0.00</span></div>
+            <div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件
+                <!-- <span class="arrow up">《</span>
+                      <span class="arrow Down">》</span> -->
+            </div>
+            <div class="selected-view">
+                <div id="selectedViewList" class="clearfix"> </div>
+                <!-- <span class="arrow">.<span>.</span></span> -->
+            </div>
+        </div>
+    </div>
     <div class="blank"></div>
   <!-- {/if} -->
 
